@@ -5,7 +5,7 @@
         xmlns:WPFToolKit="http://schemas.microsoft.com/wpf/2008/toolkit" 
         xmlns:controls="clr-namespace:Controls" 
         Closed="Window_Closed"
-        Title="PerfView" Height="535" Width="1000">
+        Title="PerfView" Height="535" Width="1000" Background="Black" Foreground="White">
     <Window.Resources>
         <BitmapImage x:Key="FileBitmapImage"  UriSource="images/VSProject_genericfile.png"/>
         <BitmapImage x:Key="HeapFileBitmapImage"  UriSource="images/VSProject_schema.png"/>
@@ -58,7 +58,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Menu Grid.Column="0" Background="#FFD1D1D1">
+            <Menu Grid.Column="0" Background="#FF000000" Foreground="White">
                 <MenuItem Header="_File">
                     <Separator/>
                     <MenuItem Header="_Hide" Command="{x:Static src:MainWindow.HideCommand}" ToolTip="Hides the current window (can reopen using windows explorer)"/>
@@ -142,31 +142,42 @@
         <src:StatusBar x:Name="StatusBar" DockPanel.Dock="Bottom"/>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="220*"/>
+                <ColumnDefinition Width="47*"/>
+                <ColumnDefinition Width="212*"/>
                 <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="619*"/>
+                <ColumnDefinition Width="730*"/>
             </Grid.ColumnDefinitions>
-            <DockPanel Background="Gray" Grid.Column="0">
-                <controls:HistoryComboBox x:Name="Directory" Margin="4,2,4,2"  DockPanel.Dock="Top" 
-                         ToolTip="This is the directory to search for performance data files." TextEntered="DoTextEnteredInDirectoryTextBox" />
-                <Grid DockPanel.Dock="Top" >
+            <DockPanel Background="Black" Grid.Column="0" Grid.ColumnSpan="2">
+                <controls:HistoryComboBox x:Name="Directory" Margin="4,2,4,2"  DockPanel.Dock="Top" Background="Transparent" Foreground="White"
+                         ToolTip="This is the directory to search for performance data files." TextEntered="DoTextEnteredInDirectoryTextBox">
+                    <controls:HistoryComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="Background" Value="Black" />
+                            <Setter Property="BorderBrush" Value="Black" />
+                        </Style>
+                    </controls:HistoryComboBox.ItemContainerStyle>
+                </controls:HistoryComboBox>
+                <Grid DockPanel.Dock="Top" Background="Black">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="100*"/>
+                        <ColumnDefinition Width="77*"/>
+                        <ColumnDefinition Width="148*"/>
                     </Grid.ColumnDefinitions>
-                    <Rectangle Grid.Column="0" Grid.ColumnSpan="3" Fill="#FFD1D1D1"/>
-                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Margin="5,0,0,0" ToolTip="Only files that match this RegEx filter pattern are displayed.">
-                    <Hyperlink Command="Help" CommandParameter="FileFilterTextBox">Filter:</Hyperlink>
+                    <Rectangle Grid.Column="0" Grid.ColumnSpan="3" Fill="#FF000000"/>
+                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Margin="5,3,0,3" Foreground="White" ToolTip="Only files that match this RegEx filter pattern are displayed.">
+                    <Hyperlink Command="Help" CommandParameter="FileFilterTextBox" Foreground="White">Filter:</Hyperlink>
                     </TextBlock>
-                    <TextBox Name="FileFilterTextBox" TextChanged="FilterTextChanged" KeyDown="FilterKeyDown" Grid.Column="1" Margin="5,2,2,2" />
+                    <TextBox Name="FileFilterTextBox" TextChanged="FilterTextChanged" KeyDown="FilterKeyDown" Grid.Column="1" Margin="5,2,2,2" Background="Black" Grid.ColumnSpan="2" />
                 </Grid>
                 <TreeView x:Name="TreeView" Grid.Column="0" MouseDoubleClick="DoMouseDoubleClickInTreeView" KeyDown="KeyDownInTreeView" SelectedItemChanged="SelectedItemChangedInTreeView" PreviewMouseRightButtonDown="TreeView_PreviewMouseRightButtonDown"
                           ToolTip="Double Click to open.  Right click contains additional help and additional options."
-                          IsEnabled="{Binding ElementName=StatusBar, Path=IsNotWorking}" AllowDrop="True" Drop="DoDrop">
+                          IsEnabled="{Binding ElementName=StatusBar, Path=IsNotWorking}" AllowDrop="True" Drop="DoDrop" Foreground="White">
                     <TreeView.ItemContainerStyle>
                         <Style TargetType="TreeViewItem">
                             <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded, Mode=TwoWay}" />
                             <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}" />
+                            <Setter Property="Background" Value="Black"/>
+                            <Setter Property="Foreground" Value="White"/>
                         </Style>
                     </TreeView.ItemContainerStyle>
                     <TreeView.ItemTemplate>
@@ -194,9 +205,9 @@
                     </TreeView.ItemTemplate>
                 </TreeView>
             </DockPanel>
-            <GridSplitter Grid.Column="1" Width="3"  HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
-            <RichTextBox Name="Body" Grid.Column="2" Background="White" IsReadOnly="True" IsDocumentEnabled="True" 
-                         IsEnabled="{Binding ElementName=StatusBar, Path=IsNotWorking}" VerticalScrollBarVisibility="auto" Margin="4.667,0,-5,0.07">
+            <GridSplitter Grid.Column="2" Width="3"  HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
+            <RichTextBox Name="Body" Grid.Column="3" Background="Black" IsReadOnly="True" IsDocumentEnabled="True" 
+                         IsEnabled="{Binding ElementName=StatusBar, Path=IsNotWorking}" VerticalScrollBarVisibility="auto" Margin="5,0,-6,0">
                 <RichTextBox.Resources>
                     <Style TargetType="{x:Type Paragraph}">
                         <Setter Property="Margin" Value="0"/>
@@ -232,10 +243,10 @@
                         <Paragraph>PerfView can collect a time based ETW trace for investigating
                             <Bold>
                                 <Hyperlink Command="Help" CommandParameter="CpuInvestigation">CPU</Hyperlink>
-                            </Bold> and 
+                            </Bold> and
                             <Bold>
                                 <Hyperlink Command="Help" CommandParameter="MakingServerInvestigationEasy">Server Response Time</Hyperlink>
-                            </Bold>, as well as 
+                            </Bold> , as well as
                             <Hyperlink Command="Help" CommandParameter="BlockedTimeInvestigation">Wall Clock / Blocked Time</Hyperlink> ,
                             <Hyperlink Command="Help" CommandParameter="UnmanagedMemoryAnalysis">Unmanaged memory</Hyperlink> or
                             <Hyperlink Command="Help" CommandParameter="GCHeapNetMemStacks">Managed memory</Hyperlink> .

@@ -935,7 +935,7 @@ namespace PerfView
             {
                 if (s_splashScreen == null)
                 {
-                    var splashScreen = new System.Windows.SplashScreen("splashscreen.png");
+                    var splashScreen = new System.Windows.SplashScreen("splashscreendark.png");
                     s_splashScreen = new WeakReference(splashScreen);
                     splashScreen.Show(true);
                 }

@@ -107,7 +107,7 @@ namespace Controls
         {
             m_hasFocus = true;
             m_origBackground = Background;
-            Background = new SolidColorBrush(Color.FromRgb(0xDC, 0xE5, 0xEB));
+            Background = new SolidColorBrush(Color.FromRgb(30, 30, 30));
         }
         private void DoLostFocus(object sender, RoutedEventArgs e)
         {

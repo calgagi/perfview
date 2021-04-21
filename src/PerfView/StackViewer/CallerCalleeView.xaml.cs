@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Utilities;
+using System.Windows.Media;
 
 namespace PerfView
 {
@@ -18,6 +19,8 @@ namespace PerfView
             // Customize the view
             CallersGrid.Grid.CanUserSortColumns = true;
             CalleesGrid.Grid.CanUserSortColumns = true;
+            Background = Brushes.Black;
+            Foreground = Brushes.White;
         }
         public void RemoveCountColumn(string columnName)
         {

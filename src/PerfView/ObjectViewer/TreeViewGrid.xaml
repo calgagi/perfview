@@ -11,6 +11,8 @@
         <!-- Shared Styles -->
         <Style x:Key="CenterAlign">
             <Setter Property="TextBlock.TextAlignment" Value="Center" />
+            <Setter Property="DataGridColumnHeader.Background" Value="Black" />
+            <Setter Property="DataGridColumnHeader.Foreground" Value="White" />
         </Style>
         <!-- DataContext for this template is a Tree control behavior -->
         <DataTemplate x:Key="TreeControlCell">
@@ -23,8 +25,10 @@
     </UserControl.Resources>
     <DataGrid Name="Grid" 
         AutoGenerateColumns="False" 
-        Background="White"
-        AlternatingRowBackground="#FFF2F1A4"
+        Background="Black"
+        RowBackground="Black"
+        AlternatingRowBackground="#FF323130"
+        Foreground="White"
         SelectionMode="Extended" SelectionUnit="CellOrRowHeader" 
         SelectedCellsChanged="SelectedCellsChanged" 
         CanUserSortColumns="False" 

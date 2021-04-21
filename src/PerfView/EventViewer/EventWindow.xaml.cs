@@ -1232,9 +1232,9 @@ namespace PerfView
             // Can make this incremental by using an ObservableCollection.  
             var events = new ObservableCollection<EventRecord>();
             Grid.ItemsSource = events;
-            Grid.Background = Brushes.Gray;
-            EventTypes.Background = Brushes.Gray;
-            Grid.RowBackground = new SolidColorBrush(Color.FromArgb(255, 200, 200, 200));
+            Grid.Background = Brushes.DarkGray;
+            EventTypes.Background = Brushes.DarkGray;
+            Grid.RowBackground = new SolidColorBrush(Color.FromArgb(255, 10, 10, 10));
             Histogram.Text = "";
 
             StatusBar.StartWork("Scanning Events", delegate ()
@@ -1334,9 +1334,9 @@ namespace PerfView
                 });
             }, delegate ()       // This is the finally clause.  Happens even on exceptions and cancelations.  
             {
-                Grid.Background = Brushes.White;
-                Grid.RowBackground = Brushes.White;
-                EventTypes.Background = Brushes.White;
+                Grid.Background = Brushes.Black;
+                Grid.RowBackground = Brushes.Black;
+                EventTypes.Background = Brushes.DarkGray;
             });
         }
 

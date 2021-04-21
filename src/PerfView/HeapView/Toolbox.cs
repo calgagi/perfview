@@ -918,7 +918,7 @@ namespace PerfView
 
             TextBlock text = new TextBlock();
             text.Text = help;
-            text.Foreground = Brushes.Yellow;
+            text.Foreground = Brushes.Blue;
             text.FontSize = 8;
             text.LayoutTransform = new RotateTransform(90);
             left.Children.Add(text);

@@ -232,7 +232,8 @@
                     ToolTip="Click on Update button to update."
                     SelectionMode="Extended" SelectionUnit="CellOrRowHeader" 
                     SelectedCellsChanged="SelectedCellsChanged"
-                    AlternatingRowBackground="#FFF2F1A4" RowBackground="#FFCACAE2">
+                    Background="Black"
+                    AlternatingRowBackground="#FF323130" RowBackground="Black">
                     <WPFToolKit:DataGrid.Columns>
                         <WPFToolKit:DataGridTextColumn 
                         x:Name="EventNameColumn"

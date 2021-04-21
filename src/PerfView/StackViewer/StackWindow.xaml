@@ -6,7 +6,7 @@
     xmlns:src1="clr-namespace:PerfView"
     xmlns:controls="clr-namespace:Controls"
     Title="PerfView Stacks"
-    Width="919" Height="605"
+    Width="919" Height="605" Foreground="White"
     >
     <Window.Resources>
         <!-- DataContext for this template is a CallTreeViewNode -->
@@ -23,13 +23,15 @@
         <Style x:Key="HeaderStyle">
             <Setter Property="TextBlock.FontSize" Value="14" />
             <Setter Property="TextBlock.FontWeight" Value="Bold" />
-            <Setter Property="TextBlock.Background" Value="Transparent" />
+            <Setter Property="TextBlock.Background" Value="Black" />
             <Setter Property="TextBlock.Margin" Value="0,10,0,0" />
+            <Setter Property="TextBlock.Foreground" Value="White"/>
+            <Setter Property="DataGridColumnHeader.Background" Value="Black" />
         </Style>
     </Window.Resources>
 
     <!-- DataContext for this window is the StackWindow itself -->
-    <DockPanel Name="DockPanel" Background="#7F3E3A3E">
+    <DockPanel Name="DockPanel" Background="Black">
         <DockPanel.CommandBindings>
             <CommandBinding Command="{x:Static src:StackWindow.ToggleNoPadOnCopyCommand}" Executed="DoToggleNoPadOnCopy" />
             <CommandBinding Command="{x:Static src:StackWindow.UpdateCommand}" Executed="DoUpdate" />
@@ -185,7 +187,7 @@
             </ContextMenu>
         </DockPanel.ContextMenu>
         <!-- This is the menu bar -->
-        <Grid DockPanel.Dock="Top">
+        <Grid DockPanel.Dock="Top" Background="Black">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
@@ -194,7 +196,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Menu Grid.Column="0" Background="#FFD1D1D1">
+            <Menu Grid.Column="0" Background="Black" Foreground="White">
                 <MenuItem Header="_File">
                     <MenuItem Header="Parent _Window" Click="DoOpenParent"/>
                     <MenuItem Header="Set Symbol _Path" Click="DoSetSymbolPath" ToolTip="Sets the locations to look for symbolic information (PDB files)."/>
@@ -413,7 +415,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition x:Name="NodePaneRowDef" Height="25*"/>
             </Grid.RowDefinitions>
-            <TabControl Grid.Row="0" Margin="0,3,0,0" IsEnabled="{Binding ElementName=StatusBar, Path=IsNotWorking}">
+            <TabControl Grid.Row="0" Margin="0,3,0,0" IsEnabled="{Binding ElementName=StatusBar, Path=IsNotWorking}" Background="Black" Foreground="White">
                 <!-- ByNameTab-->
                 <TabItem Name="ByNameTab">
                     <TabItem.Header>
@@ -481,7 +483,7 @@
                             Flame Graph <Hyperlink Command="Help" CommandParameter="FlameGraphView">?</Hyperlink>
                         </TextBlock>
                     </TabItem.Header>
-                    <src:FlameGraphDrawingCanvas x:Name="FlameGraphCanvas" Background="White" ClipToBounds="True" SizeChanged="FlameGraphCanvas_SizeChanged" CurrentFlameBoxChanged="FlameGraphCanvas_CurrentFlameBoxChanged">
+                    <src:FlameGraphDrawingCanvas x:Name="FlameGraphCanvas" ClipToBounds="True" SizeChanged="FlameGraphCanvas_SizeChanged" CurrentFlameBoxChanged="FlameGraphCanvas_CurrentFlameBoxChanged">
                         <Canvas.ContextMenu>
                             <ContextMenu Name="noContextMenu" Visibility="Visible">
                                 <MenuItem Header="Save Flame Graph" Command="{x:Static src:StackWindow.SaveFlameGraphCommand}" />
@@ -503,10 +505,10 @@
             <ContentControl Name="NodePane"/>
             <TextBox Name="Notes" Grid.Row="2"  GotFocus="Notes_GotFocus"
                      ContextMenu="{Binding ContextMenu, ElementName=DockPanel}" 
-                     AcceptsReturn="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" FontFamily="Courier New" FontSize="11" TextChanged="Notes_TextChanged" VerticalAlignment="Stretch">
+                     AcceptsReturn="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" FontFamily="Courier New" FontSize="11" TextChanged="Notes_TextChanged" VerticalAlignment="Stretch" Background="Black" Foreground="White">
                 Notes typed here will be saved when the view is saved.  F2 will hide/unhide.
             </TextBox>
-            <TextBlock Name="HelpMessage" Grid.Row="2" TextAlignment="Center" VerticalAlignment="Center" FontSize="35" Opacity="0.5">
+            <TextBlock Name="HelpMessage" Grid.Row="2" TextAlignment="Center" VerticalAlignment="Center" FontSize="35" Opacity="0.5" Foreground="White">
                 <!-- TODO decide if the fade out animation is a good idea -->
                 <TextBlock.Triggers>
                     <EventTrigger RoutedEvent="TextBox.Loaded">

@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using Utilities;
+using System.Windows.Media;
 
 namespace PerfView
 {
@@ -94,6 +95,9 @@ namespace PerfView
 
                     e.Handled = false;
                 };
+
+            Background = Grid.Background = Brushes.Black;
+            Foreground = Grid.Foreground = Brushes.White;
         }
 
         public bool Find(string pat)

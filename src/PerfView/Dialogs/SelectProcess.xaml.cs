@@ -36,6 +36,8 @@ namespace PerfView
             }
 
             Grid.Focus();
+
+
         }
 
         #region private

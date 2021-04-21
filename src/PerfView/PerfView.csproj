@@ -518,7 +518,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <SplashScreen Include="SplashScreen.png" />
+    <SplashScreen Include="SplashScreenDark.png" />
   </ItemGroup>
 
   <!-- ******************* Signing Support *********************** -->

@@ -25,13 +25,15 @@ namespace PerfView
     {
         public StatusBar()
         {
-            m_blinkColor = new SolidColorBrush(Color.FromRgb(0x42, 0x69, 0xEB));
+            m_blinkColor = new SolidColorBrush(Color.FromRgb(224, 119, 20));
             m_timer = new DispatcherTimer();
             m_workMessage = "";
             m_timer.Interval = new TimeSpan(0, 0, 0, 0, 600);
             m_timer.Tick += OnTick;
 
             InitializeComponent();
+            m_StatusMessage.Background = m_ProgressText.Background = m_LogButton.Background = m_CancelButton.Background = Brushes.Black;
+            m_StatusMessage.Foreground = m_ProgressText.Foreground = m_LogButton.Foreground = m_CancelButton.Foreground = Brushes.White;
 
             m_StatusMessage.PreviewMouseDoubleClick += delegate (object sender, MouseButtonEventArgs e)
             {
@@ -330,7 +332,7 @@ namespace PerfView
                     m_timer.IsEnabled = false;
                     m_CancelButton.IsEnabled = false;
                     m_ProgressText.Text = "Ready";
-                    Background = Brushes.Transparent;
+                    Background = Brushes.Black;
                     var message = (m_abortStarted ? "Aborted: " : "Completed: ") + m_workMessage +
                         "   (Elapsed Time: " + Duration.TotalSeconds.ToString("f3") + " sec)";
                     LogWriter.WriteLine(message);
@@ -527,7 +529,7 @@ namespace PerfView
         {
             m_workTimeSec++;
             // Make the background blink
-            Background = ((m_workTimeSec & 1) != 0) ? Brushes.Transparent : m_blinkColor;
+            Background = ((m_workTimeSec & 1) != 0) ? Brushes.Black : m_blinkColor;
 
             m_ProgressText.Text = "Working " + m_workTimeSec.ToString();
         }

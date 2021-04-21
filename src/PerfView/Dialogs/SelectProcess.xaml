@@ -11,13 +11,14 @@
         </Style>
         <Style x:Key="CenterAlign">
             <Setter Property="TextBlock.TextAlignment" Value="Center" />
+            <Setter Property="DataGridColumnHeader.Background" Value="Black" />
         </Style>
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding Command="Help" Executed="DoHyperlinkHelp" />
     </Window.CommandBindings>
     <DockPanel>
-        <RichTextBox DockPanel.Dock="Top" IsReadOnly="True" Background="#FFE2E8F8" IsDocumentEnabled="True">
+        <RichTextBox DockPanel.Dock="Top" IsReadOnly="True" Background="Black" IsDocumentEnabled="True" Foreground="White">
             <RichTextBox.Document>
                 <FlowDocument>
                     <Paragraph>
@@ -36,13 +37,13 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="100*"/>
             </Grid.ColumnDefinitions>
-            <Rectangle Grid.Column="0" Grid.ColumnSpan="3" Fill="#FFD1D1D1"/>
+            <Rectangle Grid.Column="0" Grid.ColumnSpan="3" Fill="#FF000000"/>
             <TextBlock Grid.Column="0" VerticalAlignment="Center" Margin="5,0,0,0" ToolTip="Only processes that match this filter pattern are displayed.">
-                    <Hyperlink Command="Help" CommandParameter="ProcessFilterTextBox">Filter:</Hyperlink>
+                    <Hyperlink Command="Help" CommandParameter="ProcessFilterTextBox" Foreground="White">Filter:</Hyperlink>
             </TextBlock>
-            <TextBox Name="ProcessFilterTextBox" TextChanged="FilterTextChanged" Grid.Column="1" Margin="5,2,2,2" />
+            <TextBox Name="ProcessFilterTextBox" TextChanged="FilterTextChanged" Grid.Column="1" Margin="5,2,2,2" Background="Black" Foreground="White"/>
         </Grid>
-        <Grid DockPanel.Dock="Bottom" Background="#FFB0B0B0" >
+        <Grid DockPanel.Dock="Bottom" Background="Black" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
@@ -53,19 +54,22 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Button Name="OKButton" Margin="5,4" Grid.Column="1" Width="80" Content="OK" Click="OKClicked" IsDefault="True" />
+            <Button Name="OKButton" Margin="5,4" Grid.Column="1" Width="80" Content="OK" Click="OKClicked" IsDefault="True" Background="Black" Foreground="White"/>
             <Button Name="AllProcsButton" Margin="5,4" Grid.Column="3" Width="80" Content="All Procs" Click="AllProcsClicked"
-                    ToolTip="Investigate all processes"/>
-            <Button Margin="5,4" Grid.Column="5" Width="80" Content="Cancel" Click="CancelClicked" IsCancel="True" />
+                    ToolTip="Investigate all processes" Background="Black" Foreground="White" />
+            <Button Margin="5,4" Grid.Column="5" Width="80" Content="Cancel" Click="CancelClicked" IsCancel="True" Background="Black" Foreground="White" />
         </Grid>
         <Grid PreviewKeyDown="GridKeyDownHander">
             <WPFToolKit:DataGrid Name="Grid"
-              AlternatingRowBackground="#FFF2F1A4"
+              Background="Black"
+              Foreground="White"
+              AlternatingRowBackground="#FF323130"
+              RowBackground="Black"
               AutoGenerateColumns="False" 
               MouseDoubleClick="OKClicked"
               IsReadOnly="True">
-                <WPFToolKit:DataGrid.Columns>
-                    <WPFToolKit:DataGridTextColumn 
+                <WPFToolKit:DataGrid.Columns >
+                    <WPFToolKit:DataGridTextColumn
                 Header="Name" 
                 Binding="{Binding Name}" 
                 HeaderStyle="{StaticResource CenterAlign}" />

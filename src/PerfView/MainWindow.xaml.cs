@@ -1077,6 +1077,8 @@ namespace PerfView
 
             Height = App.ConfigData.GetDouble("MainWindowHeight", Height);
             Width = App.ConfigData.GetDouble("MainWindowWidth", Width);
+            Background = VideoMenuEntry.Background = ILSizeMenuItem.Background = StatusBar.Background = ImageSizeMenuItem.Background = TreeView.Background = Body.Background = Directory.Background = FileFilterTextBox.Background = Brushes.Black;
+            Foreground = VideoMenuEntry.Foreground = ILSizeMenuItem.Foreground = StatusBar.Foreground = ImageSizeMenuItem.Foreground = TreeView.Foreground = Body.Foreground = Directory.Foreground = FileFilterTextBox.Foreground = Brushes.White;
 
             Loaded += delegate (object sender1, RoutedEventArgs e2)
             {

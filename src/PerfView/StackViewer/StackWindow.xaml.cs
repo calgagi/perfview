@@ -3426,6 +3426,9 @@ namespace PerfView
                 Height = App.ConfigData.GetDouble("StackWindowHeight", Height);
                 Width = App.ConfigData.GetDouble("StackWindowWidth", Width);
             }
+
+            Background = Brushes.Black;
+            Foreground = Brushes.White;
         }
 
         /// <summary>
@@ -3496,6 +3499,8 @@ namespace PerfView
                         }
                     };
                 }
+                perfDataGrid.Background = Brushes.Black;
+                perfDataGrid.Foreground = Brushes.White;
             }
 
             // Add Seperator
